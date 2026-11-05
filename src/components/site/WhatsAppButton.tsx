@@ -5,12 +5,18 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with International School Guwahati on WhatsApp"
-      className="fixed right-5 bottom-5 z-50 flex items-center gap-2 rounded-full bg-[#128C7E] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:scale-105"
+      className="fixed right-5 bottom-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110 hover:bg-[#20ba5a] hover:shadow-[0_6px_25px_rgba(37,211,102,0.6)] focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 active:scale-95"
     >
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-        <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.470 0 1.45 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35zM12.05 2C6.5 2 2 6.5 2 12.05c0 1.77.46 3.5 1.35 5.02L2 22l5.06-1.32a10 10 0 0 0 4.99 1.32h.01c5.54 0 10.04-4.5 10.04-10.05C22.1 6.5 17.6 2 12.05 2z" />
+      <svg
+        viewBox="0 0 32 32"
+        className="h-9 w-9"
+        aria-hidden="true"
+      >
+        <path
+          fill="#ffffff"
+          d="M16 2a13 13 0 0 0-11.23 19.53L3 29l7.67-1.72A13 13 0 1 0 16 2zm0 23.6a10.55 10.55 0 0 1-5.38-1.47l-.39-.23-4 1 .9-4.14-.25-.4A10.6 10.6 0 1 1 16 25.6zm5.83-7.94c-.32-.16-1.89-.93-2.18-1.04-.29-.11-.5-.16-.71.16s-.82 1.04-1.01 1.25-.38.24-.7.08a8.87 8.87 0 0 1-2.6-1.6 9.8 9.8 0 0 1-1.8-2.24c-.18-.32 0-.49.15-.65.14-.14.32-.37.48-.56.16-.19.21-.32.32-.53.11-.21.05-.4-.03-.56s-.71-1.73-.97-2.37c-.26-.62-.52-.54-.71-.55h-.61c-.21 0-.55.08-.84.4s-1.11 1.08-1.11 2.64 1.14 3.07 1.3 3.28c.16.21 2.24 3.42 5.43 4.8 1.84.8 2.5.85 3.4.72 1-.14 2.18-.89 2.49-1.75s.31-1.6.22-1.75c-.09-.16-.3-.26-.62-.42z"
+        />
       </svg>
-      <span className="hidden sm:inline">WhatsApp us</span>
     </a>
   );
 }

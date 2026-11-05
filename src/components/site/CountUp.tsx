@@ -31,8 +31,18 @@ export function CountUp({
       { threshold: 0.4 },
     );
     io.observe(el);
-    return () => io.disconnect();
-  }, []);
+
+    /* Safety: if the observer never fires (e.g. element is already
+       past viewport), ensure the final value is still displayed. */
+    const safety = setTimeout(() => {
+      setValue((v) => (v === 0 ? to : v));
+    }, 4000);
+
+    return () => {
+      io.disconnect();
+      clearTimeout(safety);
+    };
+  }, [to]);
 
   useEffect(() => {
     if (!started) return;
@@ -49,7 +59,14 @@ export function CountUp({
   }, [started, to, duration]);
 
   return (
-    <span ref={ref}>
+    <span 
+      ref={ref} 
+      aria-label={`${prefix}${to}${suffix}`}
+      data-countup={to}
+      data-prefix={prefix}
+      data-suffix={suffix}
+      className="vanilla-countup"
+    >
       {prefix}
       {value}
       {suffix}

@@ -11,9 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AcademicsRouteImport } from './routes/academics'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
-import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CareerRouteImport } from './routes/career'
+import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as MissionVisionRouteImport } from './routes/mission-vision'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as PathwayRouteImport } from './routes/pathway'
 import { Route as SchoolLifeRouteImport } from './routes/school-life'
@@ -28,19 +31,34 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcademicsRoute = AcademicsRouteImport.update({
+  id: '/academics',
+  path: '/academics',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdmissionsRoute = AdmissionsRouteImport.update({
   id: '/admissions',
   path: '/admissions',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const CareerRoute = CareerRouteImport.update({
+  id: '/career',
+  path: '/career',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyRoute = FacultyRouteImport.update({
+  id: '/faculty',
+  path: '/faculty',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MissionVisionRoute = MissionVisionRouteImport.update({
+  id: '/mission-vision',
+  path: '/mission-vision',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsRoute = NewsRouteImport.update({
@@ -62,9 +80,12 @@ const SchoolLifeRoute = SchoolLifeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
-  '/contact': typeof ContactRoute
+  '/career': typeof CareerRoute
+  '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
+  '/mission-vision': typeof MissionVisionRoute
   '/news': typeof NewsRoute
   '/pathway': typeof PathwayRoute
   '/school-life': typeof SchoolLifeRoute
@@ -72,9 +93,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
-  '/contact': typeof ContactRoute
+  '/career': typeof CareerRoute
+  '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
+  '/mission-vision': typeof MissionVisionRoute
   '/news': typeof NewsRoute
   '/pathway': typeof PathwayRoute
   '/school-life': typeof SchoolLifeRoute
@@ -83,9 +107,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/academics': typeof AcademicsRoute
   '/admissions': typeof AdmissionsRoute
-  '/contact': typeof ContactRoute
+  '/career': typeof CareerRoute
+  '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
+  '/mission-vision': typeof MissionVisionRoute
   '/news': typeof NewsRoute
   '/pathway': typeof PathwayRoute
   '/school-life': typeof SchoolLifeRoute
@@ -95,9 +122,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/academics'
     | '/admissions'
-    | '/contact'
+    | '/career'
+    | '/faculty'
     | '/gallery'
+    | '/mission-vision'
     | '/news'
     | '/pathway'
     | '/school-life'
@@ -105,9 +135,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/academics'
     | '/admissions'
-    | '/contact'
+    | '/career'
+    | '/faculty'
     | '/gallery'
+    | '/mission-vision'
     | '/news'
     | '/pathway'
     | '/school-life'
@@ -115,9 +148,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/academics'
     | '/admissions'
-    | '/contact'
+    | '/career'
+    | '/faculty'
     | '/gallery'
+    | '/mission-vision'
     | '/news'
     | '/pathway'
     | '/school-life'
@@ -126,9 +162,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AcademicsRoute: typeof AcademicsRoute
   AdmissionsRoute: typeof AdmissionsRoute
-  ContactRoute: typeof ContactRoute
+  CareerRoute: typeof CareerRoute
+  FacultyRoute: typeof FacultyRoute
   GalleryRoute: typeof GalleryRoute
+  MissionVisionRoute: typeof MissionVisionRoute
   NewsRoute: typeof NewsRoute
   PathwayRoute: typeof PathwayRoute
   SchoolLifeRoute: typeof SchoolLifeRoute
@@ -150,6 +189,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/academics': {
+      id: '/academics'
+      path: '/academics'
+      fullPath: '/academics'
+      preLoaderRoute: typeof AcademicsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admissions': {
       id: '/admissions'
       path: '/admissions'
@@ -157,11 +203,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdmissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/career': {
+      id: '/career'
+      path: '/career'
+      fullPath: '/career'
+      preLoaderRoute: typeof CareerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty': {
+      id: '/faculty'
+      path: '/faculty'
+      fullPath: '/faculty'
+      preLoaderRoute: typeof FacultyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -169,6 +222,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mission-vision': {
+      id: '/mission-vision'
+      path: '/mission-vision'
+      fullPath: '/mission-vision'
+      preLoaderRoute: typeof MissionVisionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news': {
@@ -198,9 +258,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AcademicsRoute: AcademicsRoute,
   AdmissionsRoute: AdmissionsRoute,
-  ContactRoute: ContactRoute,
+  CareerRoute: CareerRoute,
+  FacultyRoute: FacultyRoute,
   GalleryRoute: GalleryRoute,
+  MissionVisionRoute: MissionVisionRoute,
   NewsRoute: NewsRoute,
   PathwayRoute: PathwayRoute,
   SchoolLifeRoute: SchoolLifeRoute,
