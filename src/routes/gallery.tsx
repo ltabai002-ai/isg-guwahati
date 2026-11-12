@@ -608,6 +608,8 @@ function PhotoModal({
     return () => window.removeEventListener("keydown", onKey);
   }, [handlePrev, handleNext]);
 
+  if (!currentPhoto) return null;
+
   return (
     <div
       role="dialog"
