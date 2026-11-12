@@ -7,9 +7,9 @@ export function CountUp({
   duration = 1600,
 }: {
   to: number;
-  suffix?: string;
-  prefix?: string;
-  duration?: number;
+  suffix?: string | undefined;
+  prefix?: string | undefined;
+  duration?: number | undefined;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [value, setValue] = useState(to);
@@ -23,7 +23,7 @@ export function CountUp({
     setValue(0);
     const io = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry?.isIntersecting) {
           setStarted(true);
           io.disconnect();
         }

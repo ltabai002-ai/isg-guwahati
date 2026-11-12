@@ -356,17 +356,21 @@ function InternationalTrips() {
     }
   };
 
+  const gallery = activeGallery ? GALLERIES[activeGallery] : undefined;
+
   const handleNext = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (!activeGallery) return;
-    const photos = GALLERIES[activeGallery].photos;
+    const photos = GALLERIES[activeGallery]?.photos;
+    if (!photos) return;
     setPhotoIndex(prev => (prev < photos.length - 1 ? prev + 1 : 0));
   }, [activeGallery]);
 
   const handlePrev = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
     if (!activeGallery) return;
-    const photos = GALLERIES[activeGallery].photos;
+    const photos = GALLERIES[activeGallery]?.photos;
+    if (!photos) return;
     setPhotoIndex(prev => (prev > 0 ? prev - 1 : photos.length - 1));
   }, [activeGallery]);
 
@@ -431,7 +435,7 @@ function InternationalTrips() {
                     {trip.isAlbum && trip.id && (
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/90 px-3 py-1 font-sans text-[11px] font-extrabold tracking-wider text-navy uppercase shadow-xs">
                         <Images className="h-3.5 w-3.5" />
-                        <span>{GALLERIES[trip.id].photos.length} PHOTOS</span>
+                        <span>{GALLERIES[trip.id]?.photos.length ?? 0} PHOTOS</span>
                       </span>
                     )}
                   </div>
@@ -448,7 +452,7 @@ function InternationalTrips() {
                     key={pIdx} 
                     src={photoUrl} 
                     alt={`${trip.title} Photo ${pIdx + 1}`} 
-                    data-title={GALLERIES[trip.id!].title}
+                    data-title={GALLERIES[trip.id]?.title ?? trip.title}
                     className="album-photo hidden" 
                   />
                 ))}
@@ -458,7 +462,7 @@ function InternationalTrips() {
         </div>
       </div>
 
-      {activeGallery && (
+      {activeGallery && gallery && (
         <div
           role="dialog"
           aria-modal="true"
@@ -468,10 +472,10 @@ function InternationalTrips() {
           <div className="w-full max-w-5xl flex items-center justify-between z-10 pt-2 pb-3">
             <div className="flex items-center gap-3">
               <span className="rounded-full bg-maroon px-3 py-1 font-sans text-[11px] font-bold tracking-widest text-white uppercase shadow-xs">
-                {GALLERIES[activeGallery].title}
+                {gallery.title}
               </span>
               <span className="font-sans text-[13px] font-semibold text-white/80">
-                Photo {photoIndex + 1} of {GALLERIES[activeGallery].photos.length}
+                Photo {photoIndex + 1} of {gallery.photos.length}
               </span>
             </div>
 
@@ -498,8 +502,8 @@ function InternationalTrips() {
 
             <div className="flex flex-col items-center max-w-full">
               <img
-                src={GALLERIES[activeGallery].photos[photoIndex]}
-                alt={GALLERIES[activeGallery].title}
+                src={gallery.photos[photoIndex]}
+                alt={gallery.title}
                 className="max-h-[68vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
               />
             </div>
@@ -517,7 +521,7 @@ function InternationalTrips() {
             className="w-full max-w-3xl flex items-center justify-start gap-3 overflow-x-auto py-3 px-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xs z-10 scrollbar-none"
             onClick={(e) => e.stopPropagation()}
           >
-            {GALLERIES[activeGallery].photos.map((pt, idx) => (
+            {gallery.photos.map((pt, idx) => (
               <button
                 key={pt}
                 type="button"

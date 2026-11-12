@@ -62,7 +62,7 @@ export function JoinFamilyCta({
             <Reveal key={card.title} delay={idx * 150} className="h-full">
               <Link
                 to={card.href}
-                hash={card.hash}
+                {...(card.hash ? { hash: card.hash } : {})}
                 className="group relative block h-[400px] lg:h-[440px] w-full rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-maroon focus:ring-offset-2"
               >
                 {/* HTML comment for real photo reference */}
