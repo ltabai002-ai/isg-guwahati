@@ -14,6 +14,13 @@ const schema = z.object({
   consent: z.boolean().refine((val) => val === true, "Please check consent box to proceed"),
 });
 
+type FormErrors = Partial<
+  Record<
+    "studentName" | "parentName" | "phone" | "email" | "grade" | "city" | "consent" | "captcha",
+    string
+  >
+>;
+
 const GRADES = [
   "Playgroup / Nursery (Age 3–4)",
   "LKG / UKG (Age 4–6)",
@@ -28,7 +35,7 @@ export function AdmissionPopupModal() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [captchaVerified, setCaptchaVerified] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
 
   useEffect(() => {
     // Check if user already dismissed modal during this browser session
@@ -74,9 +81,9 @@ export function AdmissionPopupModal() {
 
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
-      const nextErrors: Record<string, string> = {};
+      const nextErrors: FormErrors = {};
       for (const issue of parsed.error.issues) {
-        nextErrors[String(issue.path[0])] = issue.message;
+        nextErrors[String(issue.path[0]) as keyof FormErrors] = issue.message;
       }
       setErrors(nextErrors);
       return;

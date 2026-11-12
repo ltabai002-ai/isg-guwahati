@@ -259,7 +259,7 @@ function NavCards() {
             <Reveal key={card.title} delay={i * 100}>
               <Link
                 to={card.link}
-                hash={card.hash || undefined}
+                {...(card.hash ? { hash: card.hash } : {})}
                 className="group relative block h-[350px] w-full overflow-hidden rounded-2xl shadow-lg"
               >
                 <img 

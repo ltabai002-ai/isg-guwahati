@@ -19,8 +19,10 @@ const STAGES = [
   "Not sure yet",
 ];
 
+type FormErrors = Partial<Record<"grade" | "parent" | "phone" | "email" | "message", string>>;
+
 export function EnquiryForm() {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [sent, setSent] = useState(false);
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -28,8 +30,8 @@ export function EnquiryForm() {
     const data = Object.fromEntries(new FormData(e.currentTarget));
     const parsed = schema.safeParse(data);
     if (!parsed.success) {
-      const next: Record<string, string> = {};
-      for (const issue of parsed.error.issues) next[String(issue.path[0])] = issue.message;
+      const next: FormErrors = {};
+      for (const issue of parsed.error.issues) next[String(issue.path[0]) as keyof FormErrors] = issue.message;
       setErrors(next);
       return;
     }
